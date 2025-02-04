@@ -1,25 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
 
+import React from "react";
+import { Unity, useUnityContext } from "react-unity-webgl";
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const { unityProvider } = useUnityContext({
+    loaderUrl: "Build2.loader.js",
+    dataUrl: "Build2.data",
+    frameworkUrl: "Build2.framework.js",
+    codeUrl: "Build2.wasm",
+  });
+
+  return <Unity style={{width:'100%', height:'100%'}} unityProvider={unityProvider} />;
 }
 
 export default App;
